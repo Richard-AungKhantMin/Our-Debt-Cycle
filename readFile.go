@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
+	"path/filepath"
 )
 
 func logToFile(fileName, message string) {
@@ -42,8 +42,14 @@ func readFile(fileName string) []string {
 	return lines
 }
 
-func Options() {
-	if len(os.Args) != 2 {
-		log.Fatal("The format should be 'go run . filename.txt'")
+func readLatestHistory() {
+
+	//check history, read history
+	latestFile, err := getLatestTxtFile("historyFiles")
+	if latestFile != "" {
+		isErrNil("Failed to find the latest history. ", err)
 	}
+	latestFilePath := filepath.Join("historyFiles", latestFile)
+	readHistory(latestFilePath)
+
 }
