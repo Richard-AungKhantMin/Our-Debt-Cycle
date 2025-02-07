@@ -1,6 +1,9 @@
 package main
 
-import "log"
+import (
+	"fmt"
+	"log"
+)
 
 func notMe(name, me string) bool {
 	if name == me {
@@ -24,11 +27,11 @@ func isErrNil(msg string, err error) {
 	}
 }
 
-func getUser(name string) *User {
+func getUser(name string) (*User, error) {
 	for _, thatUser := range allUsers {
 		if thatUser.Username == name {
-			return thatUser
+			return thatUser, nil
 		}
 	}
-	return nil
+	return nil, fmt.Errorf("Failed to fetch the user: %s", name)
 }

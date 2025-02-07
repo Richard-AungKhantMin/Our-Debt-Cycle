@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -39,4 +40,10 @@ func readFile(fileName string) []string {
 	isErrNil("Error reading each lines", err)
 
 	return lines
+}
+
+func Options() {
+	if len(os.Args) != 2 {
+		log.Fatal("The format should be 'go run . filename.txt'")
+	}
 }
