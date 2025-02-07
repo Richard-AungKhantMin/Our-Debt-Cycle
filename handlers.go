@@ -5,7 +5,6 @@ import (
 	"net/http"
 )
 
-
 func addTransactionHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -43,10 +42,10 @@ func addTransactionHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
-func getBalancesHandler(w http.ResponseWriter, r *http.Request) {
+func getBalancesHandler(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	
+
 	balances := make(map[string]map[string]float64)
 	for _, user := range allUsers {
 		balances[user.Username] = make(map[string]float64)
@@ -54,11 +53,11 @@ func getBalancesHandler(w http.ResponseWriter, r *http.Request) {
 			balances[user.Username][payee.Username] = payee.Amount
 		}
 	}
-	
+
 	json.NewEncoder(w).Encode(balances)
 }
 
-func cleanupHandler(w http.ResponseWriter, r *http.Request) {
+func cleanupHandler(w http.ResponseWriter, _ *http.Request) {
 	cleanUpAmounts()
 	w.WriteHeader(http.StatusOK)
 }

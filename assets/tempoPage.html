@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Debt Cycle</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <h1>Debt Cycle</h1>
-    <form action="/submit-debt" method="POST">
-      <label for="payer">Payer Name:</label>
-      <input type="text" id="payer" name="payer" required />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Input Form</title>
+    <script>
+        function addEntry() {
+            let container = document.getElementById("entries");
+            let index = container.children.length;
+            
+            let entry = document.createElement("div");
+            entry.innerHTML = `
+                <label for="payer${index}">Payer:</label>
+                <input type="text" name="payer" required>
 
-      <label for="payee">Payee Name:</label>
-      <input type="text" id="payee" name="payee" required />
+                <label for="payee${index}">Payee:</label>
+                <input type="text" name="payee" required>
 
-      <label for="amount">Amount (in dollars):</label>
-      <input type="number" id="amount" name="amount" step="0.01" required />
+                <label for="amount${index}">Amount:</label>
+                <input type="number" name="amount" step="0.01" required>
 
-      <button type="submit">Submit Debt</button>
+                <button type="button" onclick="removeEntry(this)">Remove</button>
+                <br><br>
+            `;
+            container.appendChild(entry);
+        }
+
+        function removeEntry(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</head>
+<body>
+    <h2>Debt Entry Form</h2>
+    <form action="/submit" method="POST">
+        <div id="entries">
+            <div>
+                <label for="payer0">Payer:</label>
+                <input type="text" name="payer" required>
+
+                <label for="payee0">Payee:</label>
+                <input type="text" name="payee" required>
+
+                <label for="amount0">Amount:</label>
+                <input type="number" name="amount" step="0.01" required>
+                <br><br>
+            </div>
+        </div>
+        <button type="button" onclick="addEntry()">Add Another Entry</button>
+        <br><br>
+        <button type="submit">Submit</button>
     </form>
-  </body>
+</body>
 </html>
-
-<script>
-  // Scroll Reveal Animation
-  const scrollRevealElements = document.querySelectorAll(".scroll-reveal");
-
-  const revealOnScroll = () => {
-    scrollRevealElements.forEach((element) => {
-      const elementTop = element.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-
-      if (elementTop < windowHeight * 0.85) {
-        element.classList.add("active");
-      }
-    });
-  };
-
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
-
-  // Floating Animation
-  const floatElements = document.querySelectorAll(".float");
-  floatElements.forEach((element) => {
-    element.style.animation = `float 4s infinite ease-in-out`;
-  });
-</script>
