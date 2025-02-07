@@ -27,7 +27,6 @@
 
       html {
         font-size: 62.5%;
-        scroll-behavior: smooth;
       }
 
       body {
@@ -64,7 +63,7 @@
       /* Header */
       .header {
         background: var(--color-cream);
-        padding: 2rem 4.8rem;
+        padding: 2rem 5%;
         position: fixed;
         width: 100%;
         z-index: 1000;
@@ -135,18 +134,31 @@
         padding: 8rem 0;
         background: var(--color-brown);
       }
+
+      .feature-stack {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
       .feature-card {
         background: var(--color-cream);
         border-radius: 12px;
         padding: 2.4rem;
-        margin-top: 10px;
         box-shadow: 0 4px 20px rgba(19, 16, 16, 0.1);
         transition: all 0.3s ease;
         border: 2px solid var(--color-gold);
         position: relative;
         overflow: hidden;
-        width: 50%;
-        margin-left: 50px;
+        text-align: center;
+      }
+
+      .feature-icon {
+        font-size: 4rem;
+        color: var(--color-gold);
+        margin-bottom: 1.5rem;
       }
 
       .feature-card:hover {
@@ -269,43 +281,41 @@
       </div>
     </section>
     <section class="section-features">
-      <div class="container">
-        <!-- Changed grid to single column -->
-        <div class="feature-stack">
-          <!-- Expense Tracking Card -->
-          <div class="feature-card scroll-reveal">
-            <div class="card-content">
-              <h3>Expense Tracking</h3>
-              <p>Monitor all transactions in real-time</p>
-              <a href="/expenses" class="card-btn">
-                View Expenses
-                <ion-icon name="arrow-forward-outline"></ion-icon>
-              </a>
-            </div>
+      <!-- Changed grid to single column -->
+      <div class="feature-stack">
+        <!-- Expense Tracking Card -->
+        <div class="feature-card scroll-reveal">
+          <div class="card-content">
+            <h3>Expense Tracking</h3>
+            <p>Monitor all transactions in real-time</p>
+            <a href="/expenses" class="card-btn">
+              View Expenses
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
           </div>
+        </div>
 
-          <!-- Debt Management Card -->
-          <div class="feature-card scroll-reveal">
-            <div class="card-content">
-              <h3>Debt Management</h3>
-              <p>Smart algorithms for optimal payments</p>
-              <a href="/debts" class="card-btn">
-                Manage Debts
-                <ion-icon name="arrow-forward-outline"></ion-icon>
-              </a>
-            </div>
+        <!-- Debt Management Card -->
+        <div class="feature-card scroll-reveal">
+          <div class="card-content">
+            <h3>Debt Management</h3>
+            <p>Smart algorithms for optimal payments</p>
+            <a href="/debts" class="card-btn">
+              Manage Debts
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
           </div>
+        </div>
 
-          <!-- Reports Card -->
-          <div class="feature-card scroll-reveal">
-            <div class="card-content">
-              <h3>Reports</h3>
-              <p>Detailed financial insights</p>
-              <a href="/reports" class="card-btn">
-                Generate Reports
-                <ion-icon name="arrow-forward-outline"></ion-icon>
-              </a>
-            </div>
+        <!-- Reports Card -->
+        <div class="feature-card scroll-reveal">
+          <div class="card-content">
+            <h3>Reports</h3>
+            <p>Detailed financial insights</p>
+            <a href="/reports" class="card-btn">
+              Generate Reports
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
           </div>
         </div>
       </div>
@@ -330,12 +340,6 @@
 
       window.addEventListener("scroll", revealOnScroll);
       window.addEventListener("load", revealOnScroll);
-
-      // Floating Animation
-      const floatElements = document.querySelectorAll(".float");
-      floatElements.forEach((element) => {
-        element.style.animation = `float 4s infinite ease-in-out`;
-      });
     </script>
   </body>
 </html>
