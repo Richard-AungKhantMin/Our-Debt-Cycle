@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	initUsers()
+	initUsersPayees()
 	Options()
 	readHistory()
 	cleanUpAmounts()

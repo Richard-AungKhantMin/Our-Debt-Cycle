@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func initUsers() {
+func initUsersPayees() {
 	for _, mainUser := range allUsers {
 		for _, otherUser := range allUsers {
 
