@@ -18,11 +18,15 @@ func initUsersPayees() {
 	}
 }
 
-func readHistory() {
+func readHistory(fileName string) {
 
-	lines := readFile("history.txt")
+	lines := readFile(fileName)
 
 	for _, eachLine := range lines {
+
+		if eachLine == "" {
+			continue
+		}
 
 		splitted := strings.Fields(eachLine)
 		if len(splitted) != 2 {

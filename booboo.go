@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 
 func notMe(name, me string) bool {
@@ -23,7 +22,7 @@ func doTheyExist(name string) bool {
 
 func isErrNil(msg string, err error) {
 	if err != nil {
-		log.Fatal(msg, err)
+		fmt.Println(msg, err)
 	}
 }
 
