@@ -128,7 +128,6 @@ func getPayers(payerName, payeeName string) ([]*User, error) {
 		OneUser, err := getUser(payerName)
 		isErrNil("Error: ", err)
 		payers = append(payers, OneUser)
-
 	default:
 		err = errors.New("Coundn't find the Payer's name")
 	}
