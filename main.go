@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 )
@@ -33,19 +34,6 @@ func main() {
 	}
 
 
-
-
-	// Set up HTTP routes
-	http.HandleFunc("/api/transaction", addTransactionHandler)
-	http.HandleFunc("/api/balances", getBalancesHandler)
-	http.HandleFunc("/api/cleanup", cleanupHandler)
-	
-	// Serve frontend files
-	fs := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fs)
-
-	log.Println("Server running on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
 
