@@ -22,3 +22,7 @@ var allUsers = []*User{
 	Milli,
 	Chan,
 }
+
+var (
+	printingResult = make([]string, 0)
+)

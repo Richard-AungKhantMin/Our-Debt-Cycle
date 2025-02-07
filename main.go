@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -8,12 +11,7 @@ func main() {
 	Options()
 	readHistory()
 	cleanUpAmounts()
+	writeResults()
 
-	for _, user := range allUsers {
-		fmt.Printf("%s's ToPay List:\n", user.Username)
-		for _, payee := range user.ToPay {
-			fmt.Printf("- %s: $%.2f\n", payee.Username, payee.Amount)
-		}
-	}
-
+	fmt.Println(strings.Join(printingResult, "\n"))
 }
