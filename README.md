@@ -1,7 +1,7 @@
 # Our Debt Cycle
 
 ## Overview
-**Our Debt Cycle** is a Go-based tool that helps track and calculate shared expenses among friends when buying groceries together. Since different individuals buy items at different times, keeping track of debts manually can be cumbersome. This program automates the process, calculating outstanding balances and updating debt history within seconds.
+**Our Debt Cycle** is a Go-based tool that helps track and calculate shared expenses among friends when buying groceries together. Since different individuals buy items at different times, keeping track of debts manually can be exhausting. This program automates the process, calculating outstanding balances and updating debt history within seconds.
 
 ## Features
 - **Automated Debt Calculation**: Processes multiple transactions and determines the final debt balances.
@@ -40,6 +40,8 @@ This means:
 - Everyone owes Richie €10.00
 - Chan owes Milli €8.75
 - Richie owes Milli €20.00
+
+We currently have the program to handle all three of us as the users. We will branch out our program to add new features such as adding new users in the future.
 
 Results will be printed on the terminal and stored in the `historyFiles/` repository as well, under the name of the latest time.
 
