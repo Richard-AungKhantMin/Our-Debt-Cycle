@@ -28,14 +28,9 @@ func main() {
 
 	case 1:
 		/* 	http.HandleFunc("/", functions.HomeHandler) */
-		log.Fatal("The sever  has started")
+		fmt.Println("The sever  has started")
 	default:
 		log.Fatal("You could either use 'go run .' for web sever or 'go run . fileName.txt' for terminal interface.")
 	}
 
-
-
 }
-
-
-

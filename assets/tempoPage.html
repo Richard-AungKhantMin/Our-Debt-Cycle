@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Input Form</title>
+    <script>
+        function addEntry() {
+            let container = document.getElementById("entries");
+            let index = container.children.length;
+            
+            let entry = document.createElement("div");
+            entry.innerHTML = `
+                <label for="payer${index}">Payer:</label>
+                <input type="text" name="payer" required>
+
+                <label for="payee${index}">Payee:</label>
+                <input type="text" name="payee" required>
+
+                <label for="amount${index}">Amount:</label>
+                <input type="number" name="amount" step="0.01" required>
+
+                <button type="button" onclick="removeEntry(this)">Remove</button>
+                <br><br>
+            `;
+            container.appendChild(entry);
+        }
+
+        function removeEntry(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</head>
+<body>
+    <h2>Debt Entry Form</h2>
+    <form action="/submit" method="POST">
+        <div id="entries">
+            <div>
+                <label for="payer0">Payer:</label>
+                <input type="text" name="payer" required>
+
+                <label for="payee0">Payee:</label>
+                <input type="text" name="payee" required>
+
+                <label for="amount0">Amount:</label>
+                <input type="number" name="amount" step="0.01" required>
+                <br><br>
+            </div>
+        </div>
+        <button type="button" onclick="addEntry()">Add Another Entry</button>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
