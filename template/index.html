@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Depth Cycle</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/index.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li><a href="#" class="nav-link">Features</a></li>
+          <li><a href="#" class="nav-link">About</a></li>
+          <li><a href="#" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="section-hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-heading scroll-reveal">
+            Simplify Your Financial Cycle
+          </h1>
+          <p class="hero-description scroll-reveal">
+            Take control of your expenses and payments with our intuitive cycle
+            management system.
+          </p>
+          <button class="btn btn-primary scroll-reveal">Get Started</button>
+        </div>
+        <img
+          src="financial-illustration.png"
+          alt="Financial management illustration"
+          class="hero-img scroll-reveal"
+        />
+      </div>
+    </section>
+    <section class="section-features">
+      <!-- Changed grid to single column -->
+      <div class="feature-stack">
+        <!-- Expense Tracking Card -->
+        <div class="feature-card scroll-reveal">
+          <div class="card-content">
+            <h3>Expense Tracking</h3>
+            <p>Monitor all transactions in real-time</p>
+          </div>
+        </div>
+
+        <!-- Debt Management Card -->
+        <div class="feature-card scroll-reveal">
+          <div class="card-content">
+            <h3>Debt Management</h3>
+            <p>Smart algorithms for optimal payments</p>
+          </div>
+        </div>
+
+        <!-- Reports Card -->
+        <div class="feature-card scroll-reveal">
+          <div class="card-content">
+            <h3>Reports</h3>
+            <p>Detailed financial insights</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="about-container">
+      <div class="about-header">
+        <h1><a href="/">About Depth Cycle</a></h1>
+      </div>
+      <div class="app-description">
+        <h2>Our Mission</h2>
+        <p>whatevr our misiion is</p>
+
+        <h2>Features</h2>
+        <ul>
+          <li>Category-based discussions</li>
+          <li>Real-time interactions</li>
+          <li>Personalized content filtering</li>
+          <li>Community moderation tools</li>
+        </ul>
+      </div>
+
+      <h2 class="team-heading">Meet Our Team</h2>
+
+      <div class="team-section">
+        <div class="team-member">
+          <img
+            src="/template/img/richie.jpeg"
+            alt="Aung Khant Min"
+            class="member-image"
+          />
+          <h3 class="member-name">Aung Khant Min</h3>
+          <p class="member-role">FrontEnd Developer</p>
+          <p class="member-bio">
+            Ensures our site remains welcoming and engaging for all members.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/Richard-AungKhantMin"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img
+            src="/template/img/milli.png"
+            alt="Eliza John"
+            class="member-image"
+          />
+          <h3 class="member-name">Eliza John</h3>
+          <p class="member-role">Backend & FrontEnd Developer</p>
+          <p class="member-bio">
+            Creates beautiful and intuitive user experiences for our community.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/ejmilli"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img
+            src="/template/img/chan.jpg"
+            alt="Chan Myint"
+            class="member-image"
+          />
+          <h3 class="member-name">Chan Myint</h3>
+          <p class="member-role">Backend Developer</p>
+          <p class="member-bio">
+            Provides top-notch backend solutions and helps maintain platform
+            quality.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/JSundB"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Scroll Reveal Animation
+      const scrollRevealElements = document.querySelectorAll(".scroll-reveal");
+
+      const revealOnScroll = () => {
+        scrollRevealElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (elementTop < windowHeight * 0.85) {
+            element.classList.add("active");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+  </body>
+</html>
