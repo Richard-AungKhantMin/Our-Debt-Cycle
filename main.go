@@ -29,6 +29,7 @@ func main() {
 
 	case 1:
 		http.HandleFunc("/", HomeHandler)
+		http.HandleFunc("/debt", debtsHandler)
 		fmt.Println("The sever  has started on http://localhost:8080")
 		log.Fatal(http.ListenAndServe(":8080", nil))
 	default:

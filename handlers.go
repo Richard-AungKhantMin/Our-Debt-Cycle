@@ -6,7 +6,15 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"text/template"
 )
+
+var tmpl *template.Template
+
+func init() {
+
+	tmpl = template.Must(template.ParseGlob("template/*.html"))
+}
 
 func addTransactionHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
@@ -68,12 +76,35 @@ func cleanupHandler(w http.ResponseWriter, _ *http.Request) {
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		// Define the path to the HTML file (e.g., "./templates/index.html")
-		filePath := filepath.Join("templates", "index.html")
+		filePath := filepath.Join("template", "index.html")
 
 		// Open the HTML file
 		file, err := os.Open(filePath)
 		if err != nil {
 			http.Error(w, "Unable to load the homepage", http.StatusInternalServerError)
+			log.Printf("Error opening file: %v\n", err)
+			return
+		}
+		defer file.Close()
+
+		// Serve the HTML file
+		http.ServeFile(w, r, filePath)
+	} else {
+		// For non-GET methods, send a 405 Method Not Allowed response
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	}
+}
+
+func debtsHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method == http.MethodGet {
+		// Define the path to the HTML file (e.g., "./templates/index.html")
+		filePath := filepath.Join("template", "debt.html")
+
+		// Open the HTML file
+		file, err := os.Open(filePath)
+		if err != nil {
+			http.Error(w, "Unable to load the secondpage", http.StatusInternalServerError)
 			log.Printf("Error opening file: %v\n", err)
 			return
 		}
