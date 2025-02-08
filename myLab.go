@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -133,4 +134,15 @@ func getPayers(payerName, payeeName string) ([]*User, error) {
 	}
 
 	return payers, err
+}
+
+func totalDebts(printingResult *[]string) {
+
+	for _, eachUser := range allUsers {
+		for _, eachPayee := range eachUser.ToPay {
+			eachUser.TotalAmount = eachUser.TotalAmount + eachPayee.Amount
+		}
+		*printingResult = append(*printingResult, fmt.Sprintf("%s has total debt of %.2f€", eachUser.Username, eachUser.TotalAmount))
+	}
+
 }

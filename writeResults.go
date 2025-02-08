@@ -22,5 +22,6 @@ func writeResults() {
 		}
 
 	}
-
+	printingResult = append(printingResult, "")
+	totalDebts(&printingResult)
 }
