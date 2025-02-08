@@ -4,52 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debt Input Form</title>
-    <script>
-        function addEntry() {
-            let container = document.getElementById("entries");
-            let index = container.children.length;
-            
-            let entry = document.createElement("div");
-            entry.innerHTML = `
-                <label for="payer${index}">Payer:</label>
-                <input type="text" name="payer" required>
-
-                <label for="payee${index}">Payee:</label>
-                <input type="text" name="payee" required>
-
-                <label for="amount${index}">Amount:</label>
-                <input type="number" name="amount" step="0.01" required>
-
-                <button type="button" onclick="removeEntry(this)">Remove</button>
-                <br><br>
-            `;
-            container.appendChild(entry);
-        }
-
-        function removeEntry(button) {
-            button.parentElement.remove();
-        }
-    </script>
 </head>
 <body>
     <h2>Debt Entry Form</h2>
     <form action="/submit" method="POST">
-        <div id="entries">
-            <div>
-                <label for="payer0">Payer:</label>
-                <input type="text" name="payer" required>
-
-                <label for="payee0">Payee:</label>
-                <input type="text" name="payee" required>
-
-                <label for="amount0">Amount:</label>
-                <input type="number" name="amount" step="0.01" required>
-                <br><br>
+        <section class="transaction-section">
+            <h2>Add Transaction</h2>
+            <div id="transaction-form">
+                <div class="form-group">
+                    <label for="payer">Who paid?</label>
+                    <select id="payer">
+                        <option value="">Select payer...</option>
+                        <option value="Richie">Richie</option>
+                        <option value="Milli">Milli</option>
+                        <option value="Chan">Chan</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="payee">Who should pay?</label>
+                    <select id="payee">
+                        <option value="">Select payee...</option>
+                        <option value="Richie">Richie</option>
+                        <option value="Milli">Milli</option>
+                        <option value="Chan">Chan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount ($)</label>
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Enter amount..."
+                        min="0"
+                        step="0.01"
+                    />
+                </div>
+                <button type="button" id="add-transaction">Add Transaction</button>
             </div>
-        </div>
+        </section>
+
         <button type="button" onclick="addEntry()">Add Another Entry</button>
         <br><br>
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        // Function to add another entry when the "Add Another Entry" button is clicked
+        function addEntry() {
+            let container = document.getElementById("transaction-form");
+            let entry = document.createElement("div");
+            entry.innerHTML = `
+                <div class="form-group">
+                    <label for="payer">Who paid?</label>
+                    <select id="payer">
+                        <option value="">Select payer...</option>
+                        <option value="Richie">Richie</option>
+                        <option value="Milli">Milli</option>
+                        <option value="Chan">Chan</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="payee">Who should pay?</label>
+                    <select id="payee">
+                        <option value="">Select payee...</option>
+                        <option value="Richie">Richie</option>
+                        <option value="Milli">Milli</option>
+                        <option value="Chan">Chan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount ($)</label>
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Enter amount..."
+                        min="0"
+                        step="0.01"
+                    />
+                </div>
+            `;
+            container.appendChild(entry);
+        }
+
+        // Handling the addition of a transaction
+        document.getElementById('add-transaction').addEventListener('click', function () {
+            const payer = document.getElementById('payer').value;
+            const payee = document.getElementById('payee').value;
+            const amount = document.getElementById('amount').value;
+
+            if (!payer || !payee || !amount) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // Send data to Go server
+            fetch('/add-transaction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    payer: payer,
+                    payee: payee,
+                    amount: amount,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Transaction added successfully');
+                    alert('Transaction added successfully!');
+                } else {
+                    console.log('Error adding transaction');
+                    alert('Failed to add transaction.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            // Reset fields
+            document.getElementById('payer').value = '';
+            document.getElementById('payee').value = '';
+            document.getElementById('amount').value = '';
+        });
+    </script>
 </body>
 </html>

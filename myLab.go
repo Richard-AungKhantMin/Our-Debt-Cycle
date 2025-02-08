@@ -29,6 +29,10 @@ func readHistory(fileName string) {
 			continue
 		}
 
+		if len(eachLine) > 0 && eachLine[0] == '/' {
+			continue
+		}
+
 		splitted := strings.Fields(eachLine)
 		if len(splitted) != 2 {
 			log.Fatal("The info is not in 'Payer-Payee Amount' format")
