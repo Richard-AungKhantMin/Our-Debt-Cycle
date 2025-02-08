@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -27,8 +28,10 @@ func main() {
 		}
 
 	case 1:
-		/* 	http.HandleFunc("/", functions.HomeHandler) */
-		fmt.Println("The sever  has started")
+		http.HandleFunc("/", HomeHandler)
+		http.HandleFunc("/debt", debtsHandler)
+		fmt.Println("The sever  has started on http://localhost:8080")
+		log.Fatal(http.ListenAndServe(":8080", nil))
 	default:
 		log.Fatal("You could either use 'go run .' for web sever or 'go run . fileName.txt' for terminal interface.")
 	}
